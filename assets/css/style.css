@@ -1,0 +1,135 @@
+body {
+  background-color: #550f1f;
+  color: #f6f6f3;
+  font-family: "Brawler", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px;
+  box-sizing: border-box;
+  /* make top section fade while scrolling */
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  background-color: #550f1f;
+}
+
+/* Paper texture overlay */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: url("../images/paper-texture.jpg") center / cover;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  pointer-events: none;
+  filter: grayscale(1) brightness(1.05);
+}
+
+/* Embossed name effect */
+.hero-title {
+  margin: 0;
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.9;
+  font-family: "Jacques Francois", Georgia, serif;
+  font-weight: 400;
+}
+
+.hero-title span {
+  display: block;
+}
+
+.hero-surname {
+  margin-left: 1.65em;;
+}
+
+.hero-footer {
+  max-width: 720px;
+  margin: 32px auto 0;
+  text-align: center;
+}
+
+/* Navigation */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px clamp(24px, 5vw, 80px);
+  transition: background-color 0.30s ease, box-shadow 0.25s ease;
+}
+
+.site-nav {
+  display: flex;
+  gap: 10px;
+  font-family: "Jacques Francois", Georgia, serif;
+  font-size: 0.94rem;
+  font-weight: 400;
+}
+
+.site-nav a {
+  padding: 13px 22px;
+  border-radius: 8px;
+  background-color: #5c1e2c;
+  color: #f6f6f3;
+  text-decoration: none;
+  transition: transform 0.30s ease, background-color 0.25s ease;
+  box-shadow: -4px 4px 9px rgba(24, 3, 9, 0.18);
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  transform: translateY(-3px);
+  background-color: #78364a;
+  box-shadow: -5px 7px 14px rgba(24, 3, 9, 0.22);
+}
+
+/* Name as logo */
+.logo {
+  color: #f6f6f3;
+  text-decoration: none;
+  font-family: "Jacques Francois", Georgia, serif;
+  font-size: 1.5rem;
+  transition: color 0.40s ease;
+}
+
+/* Ajusting header when scrolling */
+.site-header.is-scrolled {
+  background-color: #f6f6f3;
+  box-shadow: 0 1px 14px rgba(35, 5, 13, 0.12);
+}
+
+.site-header.is-scrolled .logo {
+  color: #550f1f;
+}
+
+/* Page body */
+.page-surface {
+  min-height: 100vh;
+  padding: 80px 5vw;
+  background-color: #f6f6f3;
+  color: #550f1f;
+  position: relative;
+  z-index: 1;
+  margin-top: -48px;
+  border-radius: 34px 34px 0 0;
+  box-shadow: 0 -18px 34px rgba(25, 3, 9, 0.08);
+}
+
+.work-placeholder h2 {
+  margin: 0;
+  font-family: "Jacques Francois", Georgia, serif;
+  font-size: clamp(2.6rem, 4.2vw, 4.5rem);
+  font-weight: 400;
+}
