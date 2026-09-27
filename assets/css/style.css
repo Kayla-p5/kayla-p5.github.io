@@ -7,7 +7,7 @@ body {
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: 88svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +28,7 @@ body {
   z-index: 1;
   background: url("../images/paper-texture.jpg") center / cover;
   mix-blend-mode: multiply;
-  opacity: 0.7;
+  opacity: 1;
   pointer-events: none;
   filter: grayscale(1) brightness(1.05);
 }
@@ -40,6 +40,11 @@ body {
   line-height: 0.9;
   font-family: "Jacques Francois", Georgia, serif;
   font-weight: 400;
+  background-color: #666666;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: #550f1f;
+  text-shadow: 1px 4px 4px #212121;
 }
 
 .hero-title span {
@@ -88,11 +93,30 @@ body {
   box-shadow: -4px 4px 9px rgba(24, 3, 9, 0.18);
 }
 
+/*nav button hover animation */
 .site-nav a:hover,
 .site-nav a:focus-visible {
   transform: translateY(-3px);
   background-color: #78364a;
   box-shadow: -5px 7px 14px rgba(24, 3, 9, 0.22);
+}
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 6px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.28s;
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 /* Name as logo */
@@ -117,7 +141,7 @@ body {
 /* Page body */
 .page-surface {
   min-height: 100vh;
-  padding: 80px 5vw;
+  padding: 80px 0 132px;
   background-color: #f6f6f3;
   color: #550f1f;
   position: relative;
@@ -127,9 +151,317 @@ body {
   box-shadow: 0 -18px 34px rgba(25, 3, 9, 0.08);
 }
 
+.work-placeholder {
+  max-width: 1510px;
+  margin-inline: auto;
+}
+
 .work-placeholder h2 {
   margin: 0;
   font-family: "Jacques Francois", Georgia, serif;
-  font-size: clamp(2.6rem, 4.2vw, 4.5rem);
+  font-size: clamp(2.3rem, 3.6vw, 3.8rem);
+  padding-inline: clamp(24px, 5vw, 78px);
   font-weight: 400;
+}
+
+/* Project cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 32px;
+  margin-inline: clamp(24px, 5vw, 78px);
+}
+
+.project-card {
+  padding: 16px;
+  border: 1px solid #d9d0d1;
+  border-radius: 18px;
+  background-color: #fbfbf8;
+  box-shadow: 0 10px 30px rgba(67, 12, 27, 0.05);
+}
+/* Placeholder for project images */
+.project-art {
+  aspect-ratio: 16 / 10;
+  border-radius: 11px;
+  background-color: #550f1f;
+}
+  .project-card:nth-child(2) .project-art {
+  background-color: #e8d9dc;
+  }
+
+  .project-card:nth-child(3) .project-art {
+  background-color: #d8c4c9;
+  }
+
+  .project-card:nth-child(4) .project-art {
+  background-color: #ebe4df;
+  }
+
+/* Project subtitles */
+.project-type {
+  margin: 24px 8px 0;
+  color: #69434b;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-card h3 {
+  margin: 8px 8px 6px;
+  font-family: "Jacques Francois", Georgia, serif;
+  font-size: clamp(1.85rem, 2.6vw, 3rem);
+  font-weight: 400;
+}
+
+/* fade in animation for projects */
+.project-card.reveal-ready {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-card.reveal-ready.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* About me section */
+.about {
+  position: relative;
+  z-index: 2;
+  padding: 110px clamp(24px, 5vw, 78px);
+  background-color: #550f1f;
+  color: #f6f6f3;
+}
+
+.about-copy h2 {
+  margin: 0 0 32px;
+  font-family: "Jacques Francois", Georgia, serif;
+  font-size: clamp(4.2rem, 6.4vw, 6.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  font-size: clamp(1.8rem, 5.4vw, 5.8rem);
+  white-space: nowrap;
+}
+/* For about me paragrpahs */
+.about-copy > p {
+  margin: 0;
+  max-width: 670px;
+  font-size: clamp(1.08rem, 1.4vw, 1.35rem);
+  line-height: 1.6;
+}
+.about-copy > p + p {
+  margin-top: 18px;
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+  gap: clamp(40px, 7vw, 110px);
+  align-items: center;
+  max-width: 1354px;
+  margin-inline: auto;
+}
+
+/* about photo animation and link to linked in */
+.about-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  place-items: center;
+  width: 100%;
+  min-height: 460px;
+  border: 1px solid #d2bfc2;
+  border-radius: 18px;
+  background-color: #fbfbf8;
+  color: #69434b;
+  box-shadow: 0 16px 38px rgba(26, 3, 9, 0.2);
+  transition: transform 0.35s cubic-bezier(.2, .8, .2, 1),
+            box-shadow 0.35s ease;
+  position: relative;
+}
+
+.about-photo:hover,
+.about-photo:focus-within {
+  transform: translateY(-9px) rotate(-1deg);
+  box-shadow: 0 26px 48px rgba(26, 3, 9, 0.28);
+}
+
+.about-portrait {
+  display: block;
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.about-cta {
+  position: static;
+  margin-top: auto;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid #cdb8bd;
+}
+
+.about-cta span {
+  font-family: "Jacques Francois", Georgia, serif;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+}
+
+.about-cta-button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #550f1f;
+  color: #f6f6f3;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.2s ease, background-color 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+.about-cta-button:hover,
+.about-cta-button:focus-visible {
+  transform: translateY(-2px);
+  background-color: #78364a;
+  box-shadow: 0 5px 12px rgba(26, 3, 9, 0.2);
+}
+
+/* Contact and social media section */
+.contact {
+  max-width: 1354px;
+  margin: clamp(100px, 12vw, 190px) auto 0;
+  padding-top: 55px;
+  border-top: 1px solid rgba(246, 246, 243, 0.28);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact h2 {
+  margin: 0;
+  font-family: "Jacques Francois", Georgia, serif;
+  font-size: clamp(2.8rem, 4vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.contact p {
+  font-size: 1.25rem;
+}
+
+.social-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 36px auto 0;
+}
+
+.social-list li {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 219px;
+  min-height: 64px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background-color: #fbfbf8;
+  color: #550f1f;
+  font-size: 1rem;
+  justify-content: center;
+  text-align: center;
+  opacity: 0.72;
+}
+
+/* formating images for moving carousel */
+.showcase-viewport {
+  overflow: hidden;
+}
+
+.showcase-track,
+.showcase-sequence {
+  display: flex;
+  width: max-content;
+}
+
+.showcase-sequence {
+  gap: 18px;
+  padding-right: 18px;
+}
+
+.showcase-card {
+  flex: none;
+  width: clamp(220px, 24vw, 350px);
+  margin: 0;
+}
+
+.showcase-card img {
+  display: block;
+  width: 100%;
+  height: clamp(150px, 15vw, 205px);
+  object-fit: cover;
+  border-radius: 7px;
+  box-shadow: 0 4px 10px rgba(25, 3, 9, 0.08);
+}
+
+.showcase-track {
+  animation: showcase-scroll 35s linear infinite;
+  padding-bottom: 80px;
+}
+
+/* Scaling for smaller screens */
+@media (max-width: 700px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .about-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* carousel */
+@keyframes showcase-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 800px) {
+  .showcase-card {
+    width: 260px;
+  }
+}
+
+@media (max-width: 560px) {
+  .showcase-card {
+    width: 220px;
+  }
+
+  .showcase-card img {
+    height: 160px;
+  }
+}
+
+/* controls if users have reduced motion on */
+@media (prefers-reduced-motion: reduce) {
+  .showcase-track {
+    animation: none;
+  }
+
+  .showcase-viewport {
+    overflow-x: auto;
+  }
 }

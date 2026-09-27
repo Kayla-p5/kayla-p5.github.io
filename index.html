@@ -17,18 +17,17 @@
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="#work">Work</a>
       <a href="#">About</a>
-      <a href="#">Contact</a>
+      <a href="#">Connect</a>
     </nav>
   </header>
 
   <main>
+    <!--Title and personal overview-->
     <section class="hero">
-
       <h1 class="hero-title">
         <span>Kayla</span>
         <span class="hero-surname">Purcell</span>
       </h1>
-
       <div class="hero-footer">
         <p>
           I design thoughtful digital experiences that make complex systems
@@ -38,10 +37,100 @@
     </section>
 
     <div class="page-surface">
+        <!--Moving image carousel-->
+        <section class="showcase" aria-label="Design work images">
+            <div class="showcase-viewport">
+              <div class="showcase-track">
+                <div class="showcase-sequence">
+                  <figure class="showcase-card"><img src="assets/images/carousel-1.jpg" alt=""></figure>
+                  <figure class="showcase-card"><img src="assets/images/carousel-2.jpg" alt=""></figure>
+                  <figure class="showcase-card"><img src="assets/images/carousel-3.jpg" alt=""></figure>
+                  <figure class="showcase-card"><img src="assets/images/carousel-4.jpg" alt=""></figure>
+                </div>
+                <div class="showcase-sequence" aria-hidden="true">
+                  <figure class="showcase-card"><img src="assets/images/carousel-1.jpg" alt=""></figure>
+                  <figure class="showcase-card"><img src="assets/images/carousel-2.jpg" alt=""></figure>
+                  <figure class="showcase-card"><img src="assets/images/carousel-3.jpg" alt=""></figure>
+                  <figure class="showcase-card"><img src="assets/images/carousel-4.jpg" alt=""></figure>
+                </div>
+              </div>
+            </div>
+        </section>
+
         <section class="work-placeholder" id="work">
-          <h2>Selected work</h2>
+          <h2>Featured Works</h2>
+        <!--Displays selected projects-->
+          <div class="projects-grid">
+
+            <article class="project-card">
+              <div class="project-art" aria-hidden="true"></div>
+              <p class="project-type">Exhibtion showcase</p>
+              <h3>Strung Out</h3>
+            </article>
+
+            <article class="project-card">
+                <div class="project-art" aria-hidden="true"></div>
+                <p class="project-type"> Concept placeholder</p>
+                <h3>Sigma Geochem</h3>
+              </article>
+              
+              <article class="project-card">
+                <div class="project-art" aria-hidden="true"></div>
+                <p class="project-type"> Concept placeholder</p>
+                <h3> Who gets to speak?</h3>
+              </article>
+              
+              <article class="project-card">
+                <div class="project-art" aria-hidden="true"></div>
+                <p class="project-type"> Concept placeholder</p>
+                <h3>Common Ground</h3>
+              </article>
+          </div>
         </section>
     </div>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+        <div class="about-inner">
+            <!--About me section-->
+            <div class="about-copy">
+                <h2 id="about-title">Hi! I'm <em>Kayla</em>... </h2>
+                <p>
+                    I work across design and IT, and I'm interested in making complex
+                    systems feel clear and approachable through thoughtful design.
+                </p>
+                <p>
+                    I'm completing a double degree in Information Technology (Information
+                    Systems) and Creative Industries (Interactive and Visual Communication
+                    Design) at Queensland University of Technology.
+                </p>
+            </div>
+            <div class="about-photo">
+                <img class="about-portrait" src="assets/images/kayla.JPG" alt="Portrait of Kayla Purcell">
+              
+                <div class="about-cta">
+                  <span>View my LinkedIn</span>
+                  <a class="about-cta-button"
+                     href="MY_LINKEDIN_PROFILE_URL"
+                     target="_blank"
+                     rel="noopener noreferrer">+ Connect</a>
+                </div>
+              </div>
+        </div>
+        <!--Link to social media and contact-->
+        <section class="contact" id="contact" aria-labelledby="contact-title">
+            <div class="contact-copy">
+              <h2 id="contact-title">Like what you see?</h2>
+              <p class="eyebrow">Connect with me for more</p>
+            </div>
+          
+            <ul class="social-list">
+              <li>LinkedIn</li>
+              <li>Instagram</li>
+              <li>Email</li>
+              <li>Github</li>
+            </ul>
+          </section>
+    </section>
 
   </main>
 </body>
