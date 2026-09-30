@@ -1,0 +1,6 @@
+<!--Custom cursor design -->
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="32" viewBox="0 0 28 32">
+    <path d="M3 2V25L9 19L13 29L18 27L14 17L23 17Z"
+          fill="#550f1f" stroke="#f6f6f3" stroke-width="2"
+          stroke-linejoin="round"/>
+  </svg>

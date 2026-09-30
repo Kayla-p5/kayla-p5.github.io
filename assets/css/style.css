@@ -1,65 +1,155 @@
 body {
+  margin: 0;
   background-color: #550f1f;
   color: #f6f6f3;
   font-family: "Brawler", Georgia, serif;
   -webkit-font-smoothing: antialiased;
-  margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+div[id] {
+  scroll-margin-top: 110px;
+}
+/* Hero section */
+
 .hero {
-  min-height: 88svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 32px;
-  box-sizing: border-box;
-  /* make top section fade while scrolling */
   position: sticky;
   top: 0;
   z-index: 0;
+
+  min-height: min(78svh, 760px);
+
+  display: grid;
+  place-items: center;
+
+  padding: 120px 24px 110px;
+  box-sizing: border-box;
+
   background-color: #550f1f;
+  overflow: hidden;
 }
 
 /* Paper texture overlay */
+
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
+
   background: url("../images/paper-texture.jpg") center / cover;
   mix-blend-mode: multiply;
   opacity: 1;
+
   pointer-events: none;
   filter: grayscale(1) brightness(1.05);
 }
 
+/* Holds all hero content above the texture */
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 1000px);
+  text-align: center;
+}
+
 /* Embossed name effect */
+
 .hero-title {
-  margin: 0;
-  font-size: clamp(4rem, 12vw, 10rem);
-  line-height: 0.9;
+  position: relative;
+
+  width: min(100%, 940px);
+  height: clamp(250px, 30vw, 350px);
+
+  margin: 0 auto;
+
   font-family: "Jacques Francois", Georgia, serif;
+  font-size: clamp(5.2rem, 11vw, 10rem);
   font-weight: 400;
-  background-color: #666666;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: #550f1f;
-  text-shadow: 1px 4px 4px #212121;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  text-align: left;
+
+  /* Your existing embossed effect */
+  color: #5c1324;
+
+  text-shadow:
+    -1px -1px 1px rgba(236, 197, 197, 0.8),
+     1px  2px 1px rgba(0, 0, 0, 0.15),
+     3px  4px 4px rgba(0, 0, 0, 0.15);
+
+  filter: blur(0.8px);
 }
 
 .hero-title span {
+  position: absolute;
   display: block;
+  white-space: nowrap;
 }
 
-.hero-surname {
-  margin-left: 1.65em;;
+/* Kayla */
+
+.hero-title span:first-child {
+  top: 0;
+  left: 18%;
+  z-index: 2;
 }
+
+/* Purcell */
+
+.hero-title .hero-surname {
+  top: 32%;
+  left: 41%;
+  z-index: 1;
+
+  /* Replaces the old margin positioning */
+  margin-left: 0;
+}
+
+/* Introduction */
 
 .hero-footer {
   max-width: 720px;
-  margin: 32px auto 0;
+  margin: 24px auto 0;
   text-align: center;
 }
+
+.hero-footer p {
+  margin: 0;
+  font-size: clamp(1.16rem, 1.7vw, 1.48rem);
+  line-height: 1.55;
+}
+
+/* Scroll-to-content link */
+
+.hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 42px;
+  padding-bottom: 6px;
+
+  border-bottom: 1px solid currentColor;
+
+  color: #f6f6f3;
+  font-size: 0.9rem;
+  text-decoration: none;
+
+  transition: gap 0.25s ease;
+}
+
+.hero-scroll:hover,
+.hero-scroll:focus-visible {
+  gap: 24px;
+}
+
 
 /* Navigation */
 .site-header {
@@ -266,65 +356,95 @@ body {
 
 /* about photo animation and link to linked in */
 .about-photo {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  overflow: hidden;
-  place-items: center;
-  width: 100%;
-  min-height: 460px;
-  border: 1px solid #d2bfc2;
-  border-radius: 18px;
-  background-color: #fbfbf8;
-  color: #69434b;
-  box-shadow: 0 16px 38px rgba(26, 3, 9, 0.2);
-  transition: transform 0.35s cubic-bezier(.2, .8, .2, 1),
-            box-shadow 0.35s ease;
-  position: relative;
+  justify-content: flex-end;
+
+  min-height: 520px;
+  padding: 0;
+
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+
+  transition:
+    transform 0.35s cubic-bezier(.2, .8, .2, 1),
+    filter 0.35s ease;
 }
 
 .about-photo:hover,
 .about-photo:focus-within {
-  transform: translateY(-9px) rotate(-1deg);
-  box-shadow: 0 26px 48px rgba(26, 3, 9, 0.28);
+  transform: translateY(-8px) rotate(-1deg);
+  filter: drop-shadow(0 20px 20px rgba(26, 3, 9, 0.22));
 }
+
+/* Shows the entire portrait without cropping */
 
 .about-portrait {
   display: block;
   width: 100%;
-  height: 380px;
-  object-fit: cover;
-  border-radius: 10px;
+  height: clamp(380px, 42vw, 560px);
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  background: transparent;
+  border-radius: 0;
 }
+
+/* LinkedIn panel */
 
 .about-cta {
   position: static;
-  margin-top: auto;
-  right: 24px;
-  bottom: 24px;
-  left: 24px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding-top: 20px;
-  border-top: 1px solid #cdb8bd;
+  gap: 20px;
+
+  width: 100%;
+  padding: 22px 24px;
+  box-sizing: border-box;
+
+  background-color: #f6f6f3;
+  border: 1px solid #d2bfc2;
+  border-radius: 14px;
+
+  color: #550f1f;
+  box-shadow: 0 12px 28px rgba(26, 3, 9, 0.16);
 }
 
 .about-cta span {
   font-family: "Jacques Francois", Georgia, serif;
-  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.1;
 }
 
+/* Connect button */
+
 .about-cta-button {
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: #550f1f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 10px 18px;
+
+  border-radius: 9px;
+  background-color: #550f1f;
   color: #f6f6f3;
+
+  font-family: "Jacques Francois", Georgia, serif;
+  font-size: 1rem;
   text-decoration: none;
   white-space: nowrap;
-  transition: transform 0.2s ease, background-color 0.2s ease,
-            box-shadow 0.2s ease;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .about-cta-button:hover,
@@ -368,12 +488,8 @@ body {
 }
 
 .social-list li {
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
   width: 219px;
   min-height: 64px;
-  padding: 12px 20px;
   border-radius: 10px;
   background-color: #fbfbf8;
   color: #550f1f;
@@ -381,6 +497,19 @@ body {
   justify-content: center;
   text-align: center;
   opacity: 0.72;
+}
+
+.social-list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 64px;
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px 20px;
+  box-sizing: border-box;
 }
 
 /* formating images for moving carousel */
@@ -465,3 +594,256 @@ body {
     overflow-x: auto;
   }
 }
+
+@media (max-width: 560px) {
+  .about-photo {
+    min-height: auto;
+  }
+
+  .about-portrait {
+    height: 400px;
+  }
+
+  .about-cta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Custom Cursors */
+@media (pointer: fine) {
+  html, body {
+    cursor: url("../images/cursor-arrow.svg") 3 2, auto;
+  }
+
+  a, button:not(:disabled) {
+    cursor: url("../images/cursor-hand.svg") 13 3, pointer;
+  }
+}
+
+/* ========================================
+   Individual project page
+   ======================================== */
+
+   .project-page {
+    margin: 0;
+    background-color: #f6f6f3;
+    color: #550f1f;
+  }
+  
+  /* Project navigation */
+  
+  .project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px clamp(24px, 5vw, 78px);
+    background-color: #550f1f;
+    color: #f6f6f3;
+    box-shadow: 0 8px 20px rgba(25, 3, 9, 0.16);
+  }
+  
+  .project-logo,
+  .back-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .project-logo {
+    font-family: "Jacques Francois", Georgia, serif;
+    font-size: 1.25rem;
+  }
+  
+  .back-link {
+    position: relative;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: #5c1e2c;
+    font-family: "Jacques Francois", Georgia, serif;
+    box-shadow: -4px 4px 9px rgba(24, 3, 9, 0.18);
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease;
+  }
+  
+  .back-link:hover,
+  .back-link:focus-visible {
+    transform: translateY(-2px);
+    background-color: #78364a;
+  }
+  
+  /* Project introduction */
+  
+  .project-intro {
+    max-width: 1354px;
+    margin-inline: auto;
+    padding: clamp(80px, 10vw, 150px) clamp(24px, 5vw, 78px)
+      clamp(70px, 8vw, 120px);
+  }
+  
+  .project-label,
+  .statement-label {
+    margin: 0 0 18px;
+    font-size: 0.82rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  
+  .project-intro h1 {
+    max-width: 1000px;
+    margin: 0;
+    font-family: "Jacques Francois", Georgia, serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+  
+  .project-summary {
+    max-width: 680px;
+    margin: 38px 0 0;
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    line-height: 1.6;
+  }
+  
+  /* Image series */
+  
+  .image-series {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    max-width: 1510px;
+    margin-inline: auto;
+    padding: 0 clamp(24px, 5vw, 78px)
+      clamp(100px, 11vw, 170px);
+  }
+  
+  .series-image {
+    margin: 0;
+  }
+  
+  .series-image img {
+    display: block;
+    width: 100%;
+    height: clamp(320px, 43vw, 660px);
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(25, 3, 9, 0.1);
+  }
+  
+  .series-image figcaption {
+    margin-top: 10px;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+  }
+  
+  /* Artist statement */
+  
+  .artist-statement {
+    padding: clamp(90px, 10vw, 150px) clamp(24px, 5vw, 78px);
+    background-color: #550f1f;
+    color: #f6f6f3;
+  }
+  
+  .artist-statement > * {
+    max-width: 1354px;
+    margin-inline: auto;
+  }
+  
+  .statement-label {
+    margin-bottom: 32px;
+    color: #e7d5d8;
+  }
+  
+  .statement-content {
+    display: grid;
+    grid-template-columns: minmax(250px, 0.8fr) minmax(300px, 1.2fr);
+    gap: clamp(50px, 9vw, 150px);
+    align-items: start;
+  }
+  
+  .statement-content h2 {
+    margin: 0;
+    font-family: "Jacques Francois", Georgia, serif;
+    font-size: clamp(2.8rem, 5vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1;
+  }
+  
+  .statement-text {
+    max-width: 680px;
+  }
+  
+  .statement-text p {
+    margin: 0;
+    font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+    line-height: 1.7;
+  }
+  
+  .statement-text p + p {
+    margin-top: 24px;
+  }
+  
+  /* Footer */
+  
+  .project-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px clamp(24px, 5vw, 78px);
+    background-color: #550f1f;
+    color: #f6f6f3;
+    border-top: 1px solid rgba(246, 246, 243, 0.28);
+  }
+  
+  .project-footer a {
+    color: inherit;
+    text-underline-offset: 4px;
+  }
+  
+  /* Project-page responsive layout */
+  
+  @media (max-width: 800px) {
+    .image-series,
+    .statement-content {
+      grid-template-columns: 1fr;
+    }
+  
+    .statement-content {
+      gap: 35px;
+    }
+  
+    .series-image img {
+      height: auto;
+      aspect-ratio: 4 / 3;
+    }
+  }
+  
+  @media (max-width: 560px) {
+    .project-header,
+    .project-footer {
+      align-items: flex-start;
+    }
+  
+    .project-intro h1 {
+      font-size: clamp(3.5rem, 18vw, 5.5rem);
+    }
+  }
+
+  .project-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .project-art {
+    overflow: hidden;
+  }
+  
+  .project-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
